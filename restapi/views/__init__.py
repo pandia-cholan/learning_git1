@@ -1,0 +1,6 @@
+from restapi.views.DeleteComputerHardware import DeleteByComputerHardwareIdView
+from restapi.views.GetComputerHardware import GetByComputerHardwareId
+from restapi.views.GetAllComputerHardware import GetAllComputerHardwareView
+from restapi.views.PostComputerHardware import PostComputerHardwareView
+from restapi.views.SerachFilter import SearchFilterByIdOrNameView
+from restapi.views.UpdateComputerHardware import UpdateByComputerHardwareId
