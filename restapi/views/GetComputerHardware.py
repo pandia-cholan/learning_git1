@@ -10,22 +10,23 @@ class GetByComputerHardwareId(GenericAPIView):
         try:
             print(request.user)
             pk = request.data.get('id')
-            hardware = ComputerHardwareModel.objects.get(pk = pk)
-            return Response({
-                'response_code': 200,
-                'message': "Successfully Fetched",
-                'statusFlag': True,
-                'status': "SUCCESS",
-                'errorDetails': None,
-                'data': ComputerHardwareSerializer(hardware).data
-            })
-        except ComputerHardwareModel.DoesNotExist as e:
+            hardware = ComputerHardwareModel.objects.filter(pk = pk)
+
+            if hardware:
+                return Response({
+                    'response_code': 200,
+                    'message': "Successfully Fetched",
+                    'statusFlag': True,
+                    'status': "SUCCESS",
+                    'errorDetails': None,
+                    'data': ComputerHardwareSerializer(hardware, many=True).data
+                })
             return Response({
                 'response_code': 404,
                 'message': "Not Found Record",
                 'statusFlag': False,
                 'status': "FAILED",
-                'errorDetails': str(e),
+                'errorDetails': "NOt found REcord",
                 'data': None
             })
         except Exception as e:
